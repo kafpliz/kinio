@@ -28,7 +28,7 @@ export class AppController {
 
     const data = await fetch(url, {
       headers: {
-        'X-API-KEY': 'AY6MD0Z-F9HM2Q7-PRS9W4F-B44DYD4'
+        'X-API-KEY': process.env.api_kp
       }
     })
 /*     if (data.ok) {
