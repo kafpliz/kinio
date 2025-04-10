@@ -16,6 +16,8 @@ import { ProfileController } from './endpoints/profile/profile.controller';
 import { ProfileService } from './endpoints/profile/profile.service';
 import { BookmarksController } from './endpoints/bookmarks/bookmarks.controller';
 import { BookmarksService } from './endpoints/bookmarks/bookmarks.service';
+import { SearchController } from './endpoints/search/search.controller';
+import { SearchService } from './endpoints/search/search.service';
 
 @Module({
   imports: [JwtModule.register({
@@ -25,8 +27,8 @@ import { BookmarksService } from './endpoints/bookmarks/bookmarks.service';
     rootPath: join(__dirname, '..', 'uploads'),
     serveRoot: '/uploads/'
   })] ,
-  controllers: [AppController, CatalogController, MovieController, AuthController, UserController, ProfileController, BookmarksController],
-  providers: [AppService, CatalogService, MovieService, AuthService, UserService, ProfileService, BookmarksService],
+  controllers: [AppController, CatalogController, MovieController, AuthController, UserController, ProfileController, BookmarksController, SearchController],
+  providers: [AppService, CatalogService, MovieService, AuthService, UserService, ProfileService, BookmarksService, SearchService],
 })
 export class AppModule {}
 

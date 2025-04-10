@@ -1,7 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, ManyToOne } from "typeorm";
 import { Person } from "./person";
-import { Genre } from "./genres";
-import { Type } from "./types";
+import { Genre } from "./movie-dependencies/genres";
+import { Type } from "./movie-dependencies/types";
+import { Status } from "./movie-dependencies/status";
 
 
 @Entity()
@@ -17,6 +18,13 @@ export class Movie {
 
     @Column({ type: "text", nullable: true })
     altName: string
+
+    @Column({ type: "text", nullable: true, select: false })
+    dirName: string
+
+    @Column({ type: "text", nullable: true , select: false})
+    dirAltName: string
+
 
     @Column({ type: "text", nullable: true })
     description: string
@@ -38,8 +46,6 @@ export class Movie {
     votes: number
 
 
-    @Column({ type: "varchar", nullable: true })
-    status: string
 
     @Column({ type: "varchar", nullable: true })
     slogan: string
@@ -80,4 +86,7 @@ export class Movie {
 
     @ManyToOne(()=> Type, (type)=> type.movies)
     type: Type;
+
+   @ManyToOne(()=> Status, (status)=> status.movies, {nullable: true})
+    status: Status | null
 }

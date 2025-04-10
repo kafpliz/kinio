@@ -6,7 +6,7 @@ import { JwtService } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
 import { CreateUser, getUserData } from './dto/create-user';
 import * as bcrypt from 'bcrypt';
-import { Role } from 'src/entity/roles';
+import { Role } from 'src/entity/user-dependencies/roles';
 import { generateToken, loginData } from './dto/login-user';
 
 @Injectable()

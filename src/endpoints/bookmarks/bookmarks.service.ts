@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { createBookmarkDTO, deleteBookmarkDTO } from './bookmarks.dto';
 import { AppDataSource } from 'src/entity/connect';
-import { Bookmark } from 'src/entity/bookmarks';
+import { Bookmark } from 'src/entity/user-dependencies/bookmarks';
 import { User } from 'src/entity/user';
 import { Movie } from 'src/entity/movie';
 import { BookmarksRemake } from 'src/utils/bookmarks.remake';

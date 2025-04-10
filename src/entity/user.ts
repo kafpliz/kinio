@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany} from "typeorm";
-import { Role } from "./roles";
-import { Bookmark } from "./bookmarks";
+import { Role } from "./user-dependencies/roles";
+import { Bookmark } from "./user-dependencies/bookmarks";
+
 
 
 

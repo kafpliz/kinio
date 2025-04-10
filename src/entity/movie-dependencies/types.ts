@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from "typeorm";
-import { Movie } from "./movie";
+import { Movie } from "../movie";
 
 
 @Entity()

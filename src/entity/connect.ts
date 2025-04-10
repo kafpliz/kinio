@@ -1,11 +1,12 @@
 import { DataSource } from "typeorm";
 import { Movie } from "./movie";
 import { Person } from "./person";
-import { Genre } from "./genres";
+import { Genre } from "./movie-dependencies/genres";
 import { User } from "./user";
-import { Role } from "./roles";
-import { Bookmark } from "./bookmarks";
-import { Type } from "./types";
+import { Role } from "./user-dependencies/roles";
+import { Bookmark } from "./user-dependencies/bookmarks";
+import { Type } from "./movie-dependencies/types";
+import { Status } from "./movie-dependencies/status";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
     username: "postgres",
     password: "kafpliz",
     database: "kinio",
-    entities: [Movie, Person, Genre, User, Role, Bookmark, Type],
+    entities: [Movie, Person, Genre, User, Role, Bookmark, Type, Status],
     synchronize: true,
     logging: false,
 });
