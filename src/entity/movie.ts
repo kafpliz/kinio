@@ -89,4 +89,10 @@ export class Movie {
 
    @ManyToOne(()=> Status, (status)=> status.movies, {nullable: true})
     status: Status | null
+
+    @Column({ type: "varchar", nullable: true, select: false })
+    listSlug:string
+
+    @Column({ type: "varchar", nullable: true, })
+    list:string
 }

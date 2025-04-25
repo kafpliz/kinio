@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Post, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
 import { User } from 'src/entity/user';
@@ -8,6 +8,7 @@ import * as fs from 'fs'
 import * as path from 'path';
 import { getUserData } from './dto/create-user';
 import { loginData } from './dto/login-user';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -34,6 +35,11 @@ export class AuthController {
     }
 
     return this.service.signUp(data)
+  }
+  @UseGuards(AuthGuard)
+  @Get('/islogin')
+  isLogin(){
+    return 
   }
 }
 
