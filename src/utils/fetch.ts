@@ -24,6 +24,20 @@ export interface IData {
     countries?: { name: string, id?: number }[]
     link?: string
     error?: string | null
+    sequels: {
+        id: number
+        poster: string
+        name: string
+        altName: string
+
+    }[]
+    similar: {
+        id: number
+        poster: string
+        name: string
+        altName: string
+        rating: number
+    }[]
 }
 
 export async function getDataKpDev(id: number): Promise<IData | null> {
@@ -52,7 +66,24 @@ export async function getDataKpDev(id: number): Promise<IData | null> {
             genres: movie.genres,
             countries: movie.countries,
             poster: movie.poster.url,
-            backdrop: movie.backdrop.url
+            backdrop: movie.backdrop.url,
+            sequels:movie.sequelsAndPrequel ? movie.sequelsAndPrequels.map(s => {
+                return {
+                    id: s.id,
+                    poster: s.poster.url,
+                    name: s.name,
+                    altName: s.alternativeName,
+                }
+            }): null,
+            similar:movie.similarMovies ? movie.similarMovies.map(s=> {
+                 return {
+                    id: s.id,
+                    poster: s.poster.url,
+                    name: s.name,
+                    altName: s.alternativeName,
+                    rating: s.rating.kp
+                }
+            }) : null
         }
 
         return resp;
@@ -62,31 +93,49 @@ export async function getDataKpDev(id: number): Promise<IData | null> {
 
 export async function getDataUnDev(id: number): Promise<IData | null> {
     const data = await fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films' + id, { headers: { 'X-API-KEY': process.env.api_un || '' } })
+    const seq = await fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films' + id +'/sequels_and_prequels', { headers: { 'X-API-KEY': process.env.api_un || '' } })
+    const sim = await fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films' + id +'/similars', { headers: { 'X-API-KEY': process.env.api_un || '' } })
 
     if (data.ok) {
         const movie = await data.json()
-
+        const seqPars = await seq.json()
+        const simPars = await sim.json()
         if (movie.message) return null
 
         let resp: IData = {
-            name: movie.nameRu ,
+            name: movie.nameRu,
             altName: movie.nameOriginal,
             poster: movie.posterUrl,
             slogan: movie.slogan,
             relesed: movie.year,
             description: movie.description,
             rating: movie.ratingKinopoisk,
-            votes : null,
+            votes: null,
             movieLength: movie.filmLength,
             countries: movie.countries.map(country => { return { name: country.country } }),
             genres: movie.genres.map(genre => { return { name: genre.genre } }),
-            seriesLength : null,
-            type : { name: movie.type == 'FILM' ? 'фильм' : 'сериал' },
-            ageRating : Number(movie.ratingAgeLimits.replace('age', '')),
+            seriesLength: null,
+            type: { name: movie.type == 'FILM' ? 'фильм' : 'сериал' },
+            ageRating: Number(movie.ratingAgeLimits.replace('age', '')),
             backdrop: movie.coverUrl,
-            status :null,
-
-            persons:null,
+            status: null,
+            persons: null,
+            sequels: seqPars.map(s=> {
+               return {
+                 id: s.filmID,
+                 name:s.nameRu,
+                 altName: s.nameOriginal,
+                 poster: s.posterUrl 
+               }
+            }),
+            similar: simPars.items.map(s=> {
+               return {
+                 id: s.filmID,
+                 name:s.nameRu,
+                 altName: s.nameOriginal,
+                 poster: s.posterUrl 
+               }
+            })
         }
 
 
@@ -97,3 +146,4 @@ export async function getDataUnDev(id: number): Promise<IData | null> {
     }
     return null
 }
+

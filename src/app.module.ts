@@ -19,6 +19,7 @@ import { BookmarksService } from './endpoints/bookmarks/bookmarks.service';
 import { SearchController } from './endpoints/search/search.controller';
 import { SearchService } from './endpoints/search/search.service';
 
+
 @Module({
   imports: [JwtModule.register({
     secret: process.env.JWT_SECRET,
@@ -27,7 +28,7 @@ import { SearchService } from './endpoints/search/search.service';
     rootPath: join(__dirname, '..', 'uploads'),
     serveRoot: '/uploads/'
   })] ,
-  controllers: [AppController, MovieController, /* CatalogController, AuthController, UserController, ProfileController, BookmarksController, SearchController */],
+  controllers: [AppController, MovieController,  /* CatalogController, AuthController, UserController, ProfileController, BookmarksController, SearchController */],
   providers: [AppService, MovieService,/*  CatalogService, AuthService, UserService, ProfileService, BookmarksService, SearchService */],
 })
 export class AppModule {}

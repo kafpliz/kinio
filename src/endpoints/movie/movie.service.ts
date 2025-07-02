@@ -22,24 +22,26 @@ export class MovieService {
         
      
       } */
+
     let data: any = {}
 
-    const kp_dev = await getDataKpDev(id);
-    if (kp_dev == null) {
-      const un_dev = await getDataUnDev(id)
-      if (un_dev != null) data = { ...un_dev }
-
-    } else {
-      data = { ...kp_dev }
-    }
-
-    const alloha = await fetch(`https://api.alloha.tv/?token=${process.env.alloha}&kp=` + id)
-    if (alloha.ok) {
-      const pasrs = await alloha.json()
-      console.log(pasrs);
-
+     const kp_dev = await getDataKpDev(id);
+     if (kp_dev == null) {
+       const un_dev = await getDataUnDev(id)
+       if (un_dev != null) data = { ...un_dev }
+ 
+     } else {
+       data = { ...kp_dev }
+     }
+ 
+     const alloha = await fetch(`https://api.alloha.tv/?token=${process.env.alloha}&kp=` + id)
+     if (alloha.ok) {
+       const pasrs = await alloha.json()
+   
+ 
       data.link = pasrs.data?.iframe
-    }
+   
+     }
 
     return data
   }
