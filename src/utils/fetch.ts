@@ -81,7 +81,7 @@ export async function getDataKpDev(id: number): Promise<IData | null> {
                     poster: s.poster.url,
                     name: s.name,
                     altName: s.alternativeName,
-                    rating: s.rating.kp
+                    rating: s?.rating?.kp
                 }
             }) : null
         }
