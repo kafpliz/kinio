@@ -12,27 +12,9 @@ export class User {
 
     @Column({ type: "varchar", length: 255 })
     name: string;
-    @Column({ type: "varchar", length: 255 })
-    lastName: string;
-    @Column({ type: "varchar", length: 255 })
-    email: string;
-    @Column({ type: "varchar", length: 255 })
-    password: string;
-    @Column({ type: "text", nullable: true })
-    description: string;
-
+   
     @Column({ type: "varchar", length: 255, nullable: true, default: null })
     photo: string;
-
-    @Column({ type: "boolean", default: false })
-    confirm: boolean;
-
-    @Column({ type: "integer", default: null, nullable: true })
-    confirmCode: number;
-
-    @Column({ type: "boolean", default: true })
-    public: boolean;
-
 
     @ManyToMany(() => Role, (role) => role.users)
     @JoinTable()
