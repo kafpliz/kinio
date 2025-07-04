@@ -15,7 +15,7 @@ export class AuthController {
 
   constructor(private service: AuthService) { }
 
-  @Post('/login')
+/*   @Post('/login')
   login(@Body() data: loginData) {
     return this.service.login(data)
   }
@@ -41,6 +41,7 @@ export class AuthController {
   @Get('/islogin')
   isLogin(){
     return {}
-  }
+  } */
+
 }
 

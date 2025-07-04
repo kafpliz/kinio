@@ -21,7 +21,8 @@ export class ProfileService {
             }
         }), ['confirm', 'confirmCode', 'public', 'updatedAt', 'password'])
         const filterUser:any = omit(user, ['bookmarks'])
-        filterUser.bookmarks = await BookmarksRemake(user.bookmarks)
+
+        filterUser.bookmarks = await BookmarksRemake(user.bookmarks || [])
         filterUser.photo = domain + user.photo
 
         return filterUser

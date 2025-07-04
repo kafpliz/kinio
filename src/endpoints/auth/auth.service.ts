@@ -12,14 +12,10 @@ import { generateToken, loginData } from './dto/login-user';
 @Injectable()
 export class AuthService {
     constructor(private readonly jwtService: JwtService) { }
-
+/* 
     async login(data: loginData) {
         const userRepo = AppDataSource.getRepository(User)
-        const user = await userRepo.findOne({
-            where: {
-                email: data.email
-            }
-        })
+     
 
         if (!user) return { message: 'Пользователь под такими email уже существует!', status: 400 }
 
@@ -91,5 +87,5 @@ export class AuthService {
 
 
         return { access: `Bearer ${accesToken}`, refresh: `Bearer ${refreshToken}` }
-    }
+    } */
 }

@@ -10,6 +10,9 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({ type: "integer", length: 255 })
+    tg_id: number;
+
     @Column({ type: "varchar", length: 255 })
     name: string;
    

@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
   constructor(private jwtService: JwtService, private authService: AuthService) { }
 
   async canActivate(context: ExecutionContext,) {
-    const req: Request = context.switchToHttp().getRequest()
+   /*  const req: Request = context.switchToHttp().getRequest()
 
     const access: any = req.headers['access'] ? req.headers['access'] : null
     const refresh: any = req.headers['refresh'] ? req.headers['refresh'] : null
@@ -52,6 +52,7 @@ export class AuthGuard implements CanActivate {
         return false
       }
     }
-    
+     */
+    return true
   }
 }
